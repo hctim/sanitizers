@@ -3,7 +3,7 @@
 # Script to configure GCE instance to run sanitizer build bots.
 
 # NOTE: GCE can wait up to 20 hours before reloading this file.
-# If some instance needs changes sooner just shutdown the instance 
+# If some instance needs changes sooner just shutdown the instance
 # with GCE UI or "sudo shutdown now" over ssh. GCE will recreate
 # the instance and reload the script.
 
@@ -14,8 +14,6 @@ SERVER_PORT=${SERVER_PORT:-9990}
 API_URL=${API_URL:-https://lab.llvm.org/buildbot/api/v2/workers}
 
 ON_ERROR=${ON_ERROR:-shutdown now}
-
-BOT_DIR=/b
 
 SCRIPT_DIR=$(dirname $(readlink -f "$0"))
 
@@ -89,7 +87,7 @@ function is_worker_myself() {
     for i in `seq 1 5`; do
       is_worker_connected ${WORKER_NAME} && exit 0
       sleep 30
-    done 
+    done
     exit 1
   ) | grep " $HOSTNAME "
 }
